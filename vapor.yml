@@ -1,0 +1,16 @@
+id: 19778
+name: demoreconengineai
+environments:
+    production:
+        domain: demo.reconengine.ai
+        network: larasocket
+        database: larasocket-prod
+        memory: 256
+        cli-memory: 256
+        runtime: php-7.4
+        build:
+            - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev'
+            - 'php artisan event:cache'
+            - 'npm ci && npm run prod && rm -rf node_modules'
+        deploy:
+          - 'php artisan migrate --force'
