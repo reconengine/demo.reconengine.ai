@@ -1,4 +1,4 @@
-id: 19778
+id: 19779
 name: demoreconengineai
 environments:
     production:
@@ -13,4 +13,4 @@ environments:
             - 'php artisan event:cache'
             - 'npm ci && npm run prod && rm -rf node_modules'
         deploy:
-          - 'php artisan migrate --force'
+            - 'php artisan migrate --force'
