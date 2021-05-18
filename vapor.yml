@@ -7,7 +7,7 @@ environments:
         database: larasocket-prod
         memory: 256
         cli-memory: 256
-        runtime: php-7.4
+        runtime: 'php-8.0:al2'
         build:
             - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev'
             - 'php artisan event:cache'
