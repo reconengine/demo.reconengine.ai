@@ -15,7 +15,8 @@
         "laravel/tinker": "^2.5",
         "laravel/vapor-cli": "^1.14",
         "laravel/vapor-core": "^2.10",
-        "livewire/livewire": "^2.0"
+        "livewire/livewire": "^2.0",
+        "reconengine/recon-laravel": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

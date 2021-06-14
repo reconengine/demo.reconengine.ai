@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1fbde585fc6f0acae0a270da509e377a",
+    "content-hash": "2e80f80dde7430bfa702bd3e2ea3b2eb",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3593,6 +3593,76 @@
                 }
             ],
             "time": "2020-08-18T17:17:46+00:00"
+        },
+        {
+            "name": "reconengine/recon-laravel",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/reconengine/laravel-recon.git",
+                "reference": "decffca98738851fd187af0c61853bbc568932a9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/reconengine/laravel-recon/zipball/decffca98738851fd187af0c61853bbc568932a9",
+                "reference": "decffca98738851fd187af0c61853bbc568932a9",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": ">=7.2",
+                "illuminate/support": ">=7.0",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^5.0",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Recon\\ReconServiceProvider"
+                    ],
+                    "aliases": {
+                        "Recon": "Recon\\ReconFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Recon\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Recon Engine",
+                    "email": "contact@reconengine.ai",
+                    "role": "Developer"
+                }
+            ],
+            "description": "World class recommendation engine brought to Laravel",
+            "homepage": "https://reconengine.ai/",
+            "keywords": [
+                "Neural network",
+                "Users",
+                "collaborative filtering",
+                "interactions",
+                "items",
+                "laravel",
+                "machine learning",
+                "recommendation engine",
+                "recommendation system",
+                "recon"
+            ],
+            "support": {
+                "issues": "https://github.com/reconengine/laravel-recon/issues",
+                "source": "https://github.com/reconengine/laravel-recon/tree/1.0.1"
+            },
+            "time": "2021-06-14T02:28:41+00:00"
         },
         {
             "name": "riverline/multipart-parser",

@@ -46,13 +46,16 @@ class DatabaseSeeder extends Seeder
             }
 
             echo "Processing line ({$i}): {$filedata[10]}\n";
-            $user = User::firstOrCreate([
-                'external_user_id' => $filedata[3],
-            ], [
-                'name' => $this->faker->name,
-                'email' => $this->faker->unique()->email,
-                'password' => bcrypt('test1234'),
-            ]);
+            $user = User::withoutEvents(function () use ($filedata) {
+                return User::firstOrCreate([
+                    'external_user_id' => $filedata[3],
+                ], [
+                    'name' => $this->faker->name,
+                    'email' => $this->faker->unique()->email,
+                    'password' => bcrypt('test1234'),
+                ]);
+            });
+
 
             Article::withoutEvents(function () use ($filedata, $user) {
                 Article::updateOrCreate([
@@ -91,13 +94,15 @@ class DatabaseSeeder extends Seeder
             $i++;
 
             echo "Processing line ({$i}): {$filedata[1]}\n";
-            $user = User::firstOrCreate([
-                'external_user_id' => $filedata[3],
-            ], [
-                'name' => $this->faker->name,
-                'email' => $this->faker->unique()->email,
-                'password' => bcrypt('test1234'),
-            ]);
+            $user = User::withoutEvents(function () use ($filedata) {
+                return User::firstOrCreate([
+                    'external_user_id' => $filedata[3],
+                ], [
+                    'name' => $this->faker->name,
+                    'email' => $this->faker->unique()->email,
+                    'password' => bcrypt('test1234'),
+                ]);
+            });
 
             $article = Article::firstWhere('external_content_id', $filedata[2]);
 
