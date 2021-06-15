@@ -12,6 +12,8 @@ class Article extends Model
     use HasFactory;
     use ReconItem;
 
+    protected $guarded = [];
+
     protected function define(SchemaDefinition $definition)
     {
         $definition->category('content_type');
