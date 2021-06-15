@@ -10,8 +10,6 @@ use Illuminate\Foundation\Testing\WithFaker;
 
 class ImportArticles extends Command
 {
-    use WithFaker;
-
     /**
      * The name and signature of the console command.
      *
@@ -43,7 +41,6 @@ class ImportArticles extends Command
      */
     public function handle()
     {
-        $this->setUpFaker();
         $this->importArticles();
         $this->importInteractions();
 
@@ -75,10 +72,6 @@ class ImportArticles extends Command
             $user = User::withoutEvents(function () use ($filedata) {
                 return User::firstOrCreate([
                     'external_user_id' => $filedata[3],
-                ], [
-                    'name' => $this->faker->name,
-                    'email' => $this->faker->unique()->email,
-                    'password' => bcrypt('test1234'),
                 ]);
             });
 
@@ -123,10 +116,6 @@ class ImportArticles extends Command
             $user = User::withoutEvents(function () use ($filedata) {
                 return User::firstOrCreate([
                     'external_user_id' => $filedata[3],
-                ], [
-                    'name' => $this->faker->name,
-                    'email' => $this->faker->unique()->email,
-                    'password' => bcrypt('test1234'),
                 ]);
             });
 
