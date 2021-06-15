@@ -39,6 +39,7 @@ class ImportInteractions extends Command
     public function handle()
     {
         Interaction::each(function (Interaction $interaction) {
+            $this->line("Interaction: {$interaction->id}");
             dispatch(function () use ($interaction) {
                 $interaction->recordInteractionWithRecon();
             });

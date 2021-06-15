@@ -8,5 +8,5 @@ return [
 
     'database' => env('RECON_DATABASE', 'default'),
 
-    'queue' => env('RECON_QUEUE', false),
+    'queue' => env('RECON_QUEUE', true),
 ];
