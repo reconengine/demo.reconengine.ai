@@ -10,6 +10,8 @@ class Interaction extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function recordInteractionWithRecon()
     {
         InteractionBuilder::make($this->event_type)
