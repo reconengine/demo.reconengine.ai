@@ -104,13 +104,18 @@ class ImportArticles extends Command
         $i = 0;
 
         while (($filedata = fgetcsv($file)) !== FALSE) {
+            $i++;
+
             // Skip first row (Remove below comment if you want to skip the first row)
             if($i == 0){
-                $i++;
                 continue;
             }
 
-            $i++;
+            // already processed...
+//            if ($i < 34319) {
+//                continue;
+//            }
+
 
             $this->line("Processing line ({$i}): {$filedata[1]}");
             $user = User::withoutEvents(function () use ($filedata) {

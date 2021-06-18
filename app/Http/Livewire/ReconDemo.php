@@ -38,9 +38,12 @@ class ReconDemo extends Component
         $this->displayingArticle = false;
         $this->displayingRelatedArticle = true;
         $this->selectedArticle = $article;
-        $relatedArticleResponse = $article->related();
-        dd($relatedArticleResponse);
-        $relatedArticleIds = collect($relatedArticleResponse['items'])->pluck('item_id');
-        $this->relatedArticles = Article::whereIn($relatedArticleIds)->get();
+//        $relatedArticleResponse = $article->related();
+//        dd($relatedArticleResponse);
+//        $relatedArticleIds = collect($relatedArticleResponse['items'])->pluck('item_id');
+        $this->relatedArticles = Article::join('related_articles', 'related_articles.related_article_id', 'articles.id')
+            ->where('related_articles.source_article_id', $article->id)
+            ->orderByAsc('related_articles.id')
+            ->get();
     }
 }
