@@ -38,11 +38,11 @@ class ImportInteractions extends Command
      */
     public function handle()
     {
-        Interaction::each(function (Interaction $interaction) {
+        Interaction::each(function (Interaction $interaction, $i) {
             $this->line("Interaction: {$interaction->id}");
             dispatch(function () use ($interaction) {
                 $interaction->recordInteractionWithRecon();
-            });
+            })->delay($i / 60);
         });
 
         return 0;
