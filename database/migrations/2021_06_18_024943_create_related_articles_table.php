@@ -17,6 +17,7 @@ class CreateRelatedArticlesTable extends Migration
             $table->id();
             $table->foreignId('source_article_id')->constrained('articles');
             $table->foreignId('related_article_id')->constrained('articles');
+            $table->unsignedInteger('order');
             $table->timestamps();
         });
     }

@@ -43,7 +43,7 @@ class ReconDemo extends Component
 //        $relatedArticleIds = collect($relatedArticleResponse['items'])->pluck('item_id');
         $this->relatedArticles = Article::join('related_articles', 'related_articles.related_article_id', 'articles.id')
             ->where('related_articles.source_article_id', $article->id)
-            ->orderByAsc('related_articles.id')
+            ->orderBy('related_articles.id')
             ->get();
     }
 }

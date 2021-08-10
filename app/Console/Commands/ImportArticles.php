@@ -41,7 +41,7 @@ class ImportArticles extends Command
      */
     public function handle()
     {
-        $this->importArticles();
+//        $this->importArticles();
         $this->importInteractions();
 
         return 0;
@@ -112,9 +112,9 @@ class ImportArticles extends Command
             }
 
             // already processed...
-//            if ($i < 34319) {
-//                continue;
-//            }
+            if ($i < 28980) {
+                continue;
+            }
 
 
             $this->line("Processing line ({$i}): {$filedata[1]}");
