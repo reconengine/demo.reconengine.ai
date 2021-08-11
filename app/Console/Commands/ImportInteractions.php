@@ -4,6 +4,8 @@ namespace App\Console\Commands;
 
 use App\Models\Interaction;
 use Illuminate\Console\Command;
+use Illuminate\Support\Collection;
+use Recon\Helpers\InteractionBuilder;
 
 class ImportInteractions extends Command
 {
@@ -38,10 +40,10 @@ class ImportInteractions extends Command
      */
     public function handle()
     {
-        Interaction::each(function (Interaction $interaction, $i) {
-            dispatch(function () use ($interaction) {
-                $interaction->recordInteractionWithRecon();
-            });
+        Interaction::chunk(251, function (Collection $interactions) {
+            $interactionBuilders = $interactions->map->toReconInteractionBuilder();
+
+            InteractionBuilder::sendBatch($interactionBuilders);
         });
 
         return 0;

@@ -12,13 +12,12 @@ class Interaction extends Model
 
     protected $guarded = [];
 
-    public function recordInteractionWithRecon()
+    public function toReconInteractionBuilder()
     {
-        InteractionBuilder::make($this->event_type)
+        return InteractionBuilder::make($this->event_type)
             ->setItemId($this->article_id)
             ->setUserId($this->user_id)
             ->setTimestamp($this->created_at)
-            ->send()
         ;
     }
 }
