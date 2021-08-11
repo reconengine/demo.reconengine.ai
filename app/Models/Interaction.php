@@ -15,6 +15,7 @@ class Interaction extends Model
     public function toReconInteractionBuilder()
     {
         return InteractionBuilder::make($this->event_type)
+            ->setClientId($this->id)
             ->setItemId($this->article_id)
             ->setUserId($this->user_id)
             ->setTimestamp($this->created_at)
