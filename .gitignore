@@ -16,3 +16,4 @@ yarn-error.log
 .env.staging
 .idea/
 storage/dataset
+.DS_Store
