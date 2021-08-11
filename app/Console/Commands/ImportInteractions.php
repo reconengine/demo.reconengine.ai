@@ -40,7 +40,10 @@ class ImportInteractions extends Command
      */
     public function handle()
     {
-        Interaction::chunk(251, function (Collection $interactions) {
+        Interaction::chunk(250, function (Collection $interactions) {
+            $topId = $interactions->last()->id;
+            $this->line("Importing interactions up to ID: {$topId}");
+
             $interactionBuilders = $interactions->map->toReconInteractionBuilder();
 
             InteractionBuilder::sendBatch($interactionBuilders);
