@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Recon\Helpers\InteractionBuilder;
 
-class Interaction extends Model
+class MovieRating extends Model
 {
     use HasFactory;
 
@@ -14,9 +14,10 @@ class Interaction extends Model
 
     public function toReconInteractionBuilder()
     {
-        return InteractionBuilder::make($this->event_type)
+        return InteractionBuilder::make('RATING')
             ->setClientId($this->id)
-            ->setItemId($this->article_id)
+            ->setItemId($this->movie_id)
+            ->setValue($this->rating)
             ->setUserId($this->user_id)
             ->setTimestamp($this->created_at)
         ;

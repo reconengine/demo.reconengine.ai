@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInteractionsTable extends Migration
+class CreateRelatedMoviesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateInteractionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('interactions', function (Blueprint $table) {
+        Schema::create('related_movies', function (Blueprint $table) {
             $table->id();
-            $table->string('event_type');
-            $table->string('article_id');
-            $table->string('user_id');
+            $table->foreignId('source_movie_id')->constrained('movies');
+            $table->foreignId('related_movie_id')->constrained('movies');
+            $table->unsignedInteger('order');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateInteractionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('interactions');
+        Schema::dropIfExists('related_movies');
     }
 }

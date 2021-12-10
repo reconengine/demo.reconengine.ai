@@ -2,14 +2,14 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Article;
-use App\Models\Interaction;
-use App\Models\RelatedArticle;
+use App\Models\Movie;
+use App\Models\MovieRating;
+use App\Models\RelatedMovie;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Testing\WithFaker;
 
-class SaveRelatedArticles extends Command
+class SaveRelatedMovies extends Command
 {
     /**
      * The name and signature of the console command.
@@ -42,12 +42,21 @@ class SaveRelatedArticles extends Command
      */
     public function handle()
     {
-        RelatedArticle::truncate();
+        RelatedMovie::truncate();
 
-        Article::each(function (Article $article) {
-
+        Movie::each(function (Movie $article) {
+            $this->line("Processing ID: {$article->id}");
             $relatedArticles = $article->related();
 
+            foreach ($relatedArticles['items'] as $i => $item)
+            {
+                $relatedArticleId = $item['item_id'];
+                RelatedMovie::create([
+                    'source_article_id' => $article->id,
+                    'related_article_id' => $relatedArticleId,
+                    'order' => $i,
+                ]);
+            }
         });
 
         return 0;

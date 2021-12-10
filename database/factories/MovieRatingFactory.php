@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\RelatedArticle;
+use App\Models\MovieRating;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class RelatedArticleFactory extends Factory
+class MovieRatingFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = RelatedArticle::class;
+    protected $model = MovieRating::class;
 
     /**
      * Define the model's default state.

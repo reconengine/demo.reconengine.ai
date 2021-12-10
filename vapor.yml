@@ -1,17 +1,17 @@
-id: 19779
+id: 26676
 name: demoreconengineai
 environments:
-    production:
-        cli-timeout: 600
-        domain: demo.reconengine.ai
-        network: larasocket
-        database: zvv
-        memory: 256
-        cli-memory: 256
-        runtime: 'php-8.0:al2'
-        build:
-            - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev'
-            - 'php artisan event:cache'
-            - 'npm ci && npm run prod && rm -rf node_modules'
-        deploy:
-            - 'php artisan migrate --force'
+  production:
+    cli-timeout: 600
+    domain: demo.reconengine.ai
+    network: recon
+    database: recon
+    memory: 512
+    cli-memory: 512
+    runtime: 'php-8.0:al2'
+    build:
+      - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev'
+      - 'php artisan event:cache'
+      - 'npm ci && npm run prod && rm -rf node_modules'
+    deploy:
+      - 'php artisan migrate --force'

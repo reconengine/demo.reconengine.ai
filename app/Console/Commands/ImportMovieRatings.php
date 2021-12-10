@@ -2,12 +2,12 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Interaction;
+use App\Models\MovieRating;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Recon\Helpers\InteractionBuilder;
 
-class ImportInteractions extends Command
+class ImportMovieRatings extends Command
 {
     /**
      * The name and signature of the console command.
@@ -40,9 +40,10 @@ class ImportInteractions extends Command
      */
     public function handle()
     {
-        Interaction::chunk(250, function (Collection $interactions) {
-            $topId = $interactions->last()->id;
-            $this->line("Importing interactions up to ID: {$topId}");
+        MovieRating::chunk(250, function (Collection $interactions) {
+            $firstId = $interactions->first()->id;
+            $lastId = $interactions->last()->id;
+            $this->line("Importing IDs: {$firstId} -> {$lastId}");
 
             $interactionBuilders = $interactions->map->toReconInteractionBuilder();
 

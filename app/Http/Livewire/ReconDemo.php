@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Article;
+use App\Models\Movie;
 use Livewire\Component;
 
 class ReconDemo extends Component
@@ -11,39 +11,36 @@ class ReconDemo extends Component
 
     protected $queryString = ['search'];
 
-    public $displayingRelatedArticle = false;
-    public $relatedArticles = null;
-    public $displayingArticle = false;
-    public $selectedArticle = null;
+    public $displayingRelatedMovie = false;
+    public $relatedMovies = null;
+    public $displayingMovie = false;
+    public $selectedMovie = null;
 
     public function render()
     {
         return view('livewire.recon-demo', [
-            'articles' => Article::where('title', 'like', '%'.$this->search.'%')
+            'movies' => Movie::where('title', 'like', '%'.$this->search.'%')
                 ->orWhere('text', 'like', '%'.$this->search.'%')
                 ->limit(20)
                 ->get(),
         ]);
     }
 
-    public function articleSelected(Article $article)
+    public function movieSelected(Movie $movie)
     {
-        $this->displayingArticle = true;
-        $this->displayingRelatedArticle = false;
-        $this->selectedArticle = $article;
+        $this->displayingMovie = true;
+        $this->selectedMovie = $movie;
     }
 
-    public function displayRelatedArticles(Article $article)
+    public function displayRelatedMovies(Movie $movie)
     {
-        $this->displayingArticle = false;
-        $this->displayingRelatedArticle = true;
-        $this->selectedArticle = $article;
-//        $relatedArticleResponse = $article->related();
-//        dd($relatedArticleResponse);
-//        $relatedArticleIds = collect($relatedArticleResponse['items'])->pluck('item_id');
-        $this->relatedArticles = Article::join('related_articles', 'related_articles.related_article_id', 'articles.id')
-            ->where('related_articles.source_article_id', $article->id)
-            ->orderBy('related_articles.id')
-            ->get();
+        $this->displayingRelatedMovie = true;
+        $this->selectedMovie = $movie;
+        $this->relatedMovies = Movie::select('movies.*')
+            ->join('related_movies', 'related_movies.related_movie_id', 'movies.id')
+            ->where('related_movies.source_movie_id', $movie->id)
+            ->orderBy('related_movies.order')
+            ->get()
+        ;
     }
 }

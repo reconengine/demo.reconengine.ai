@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRelatedArticlesTable extends Migration
+class CreateMovieRatingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateRelatedArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('related_articles', function (Blueprint $table) {
+        Schema::create('movie_ratings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('source_article_id')->constrained('articles');
-            $table->foreignId('related_article_id')->constrained('articles');
-            $table->unsignedInteger('order');
+            $table->unsignedFloat('rating');
+            $table->foreignId('movie_id')->constrained();
+            $table->string('user_id');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateRelatedArticlesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('related_articles');
+        Schema::dropIfExists('interactions');
     }
 }
